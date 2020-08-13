@@ -35,21 +35,21 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  User.associate = function (models) {
+  User.associate = function(models) {
     // Associating User with Sessions
     User.hasMany(models.Session, {
       onDelete: "cascade"
     });
   };
 
-  User.associate = function (models) {
+  User.associate = function(models) {
     // Associating User with Documents
     User.hasMany(models.Document, {
       onDelete: "cascade"
     });
   };
 
-  User.associate = function (models) {
+  User.associate = function(models) {
     // We're saying that a Document should belong to an User
     // A Document can't be created without an User due to the foreign key constraint
     User.belongsTo(models.Session, {
