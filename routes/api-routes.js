@@ -36,9 +36,6 @@ module.exports = function(app) {
     req.logout();
     res.redirect("/");
   });
-  app.get("/", (req, res) => {
-    res.render("index", { layout: "main" });
-  });
 
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", (req, res) => {
