@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "12345",
-    "database": "passport_demo",
+    "database": "teacherreacher",
     "host": "localhost",
     "dialect": "mysql"
   },
