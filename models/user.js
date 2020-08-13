@@ -34,6 +34,31 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
+
+  User.associate = function (models) {
+    // Associating User with Sessions
+    User.hasMany(models.Session, {
+      onDelete: "cascade"
+    });
+  };
+
+  User.associate = function (models) {
+    // Associating User with Documents
+    User.hasMany(models.Document, {
+      onDelete: "cascade"
+    });
+  };
+
+  User.associate = function (models) {
+    // We're saying that a Document should belong to an User
+    // A Document can't be created without an User due to the foreign key constraint
+    User.belongsTo(models.Session, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   User.prototype.validPassword = function(password) {
     console.log(`${password} as opposed to ${this.password}`);
