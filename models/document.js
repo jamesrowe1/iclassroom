@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-module.exports = function(sequelize, DataTypes) {
-    const Document = sequelize.define("document", {
-        // The email cannot be null, and must be a proper email before creation
-        title: {
-
-        },
-        body: {
-
-        },
-        // The password cannot be null
-        grade: {
-
-        },
-        document_type: {
-
-        },
-        user: {
-            // Foreign key for user user.id
-        }
-=======
 module.exports = function (sequelize, DataTypes) {
   const Document = sequelize.define("document", {
     // The title of the document
@@ -54,7 +33,6 @@ module.exports = function (sequelize, DataTypes) {
       foreignKey: {
         allowNull: false,
       },
->>>>>>> 6844ba5654d78b82724cd35cbc60c86c87cc1c9e
     });
   };
   return Document;
