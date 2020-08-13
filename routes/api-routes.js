@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+//const express = require("express");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -34,6 +35,9 @@ module.exports = function(app) {
   app.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/");
+  });
+  app.get("/", (req, res) => {
+    res.render("index", { layout: "main" });
   });
 
   // Route for getting some data about our user to be used client side
