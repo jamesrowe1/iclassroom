@@ -16,3 +16,5 @@ document.addEventListener('DOMContentLoaded', function() {
       $('input#input_text, textarea#textarea2').characterCounter();
     });
         
+
+    
