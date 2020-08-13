@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
     const Document = sequelize.define("document", {
         // The email cannot be null, and must be a proper email before creation
         title: {
