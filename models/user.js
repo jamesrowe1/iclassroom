@@ -49,6 +49,7 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
+  //I think this is in the wrong spot
   User.associate = function(models) {
     // We're saying that a Document should belong to an User
     // A Document can't be created without an User due to the foreign key constraint

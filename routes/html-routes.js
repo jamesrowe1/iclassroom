@@ -16,7 +16,7 @@ module.exports = function(app) {
   app.get("/signup", (req, res) => {
     res.render("signup", { layout: "main" });
   });
-  app.get("/schedule", (req, res) => {
+  app.get("/schedule", isAuthenticated, (req, res) => {
     res.render("schedule", { layout: "main" });
   });
 

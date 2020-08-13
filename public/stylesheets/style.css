@@ -58,3 +58,7 @@ body {
 .side-nav-color {
   background-color:#ede7f6;
 }
+
+select {
+  display:block;
+}
