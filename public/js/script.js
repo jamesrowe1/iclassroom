@@ -1,6 +1,5 @@
 // for drop down menu
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
-  });
-  
+// document.addEventListener("DOMContentLoaded", () => {
+//   const elems = document.querySelectorAll(".sidenav");
+//   const instances = M.Sidenav.init(elems);
+// });
