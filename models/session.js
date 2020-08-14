@@ -11,16 +11,16 @@ module.exports = function(sequelize, DataTypes) {
     // },
     date: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     time: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     subject: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   });
 
   Session.associate = function(models) {
@@ -28,16 +28,16 @@ module.exports = function(sequelize, DataTypes) {
     // A Document can't be created without an User due to the foreign key constraint
     Session.belongsTo(models.User, {
       foreignKey: {
-        allowNull: false,
+        allowNull: false
       },
-      as: "studentRequesting",
+      as: "studentRequesting"
     });
 
     Session.belongsTo(models.User, {
       foreignKey: {
-        allowNull: false,
+        allowNull: false
       },
-      as: "tutor",
+      as: "tutor"
     });
   };
 
