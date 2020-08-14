@@ -17,7 +17,7 @@ module.exports = function(app) {
     res.render("signup", { layout: "main" });
   });
   app.get("/schedule", isAuthenticated, (req, res) => {
-    res.render("schedule", { layout: "main" });
+    res.render("schedule", { layout: "main", user: req.user });
   });
 
   // Here we've add our isAuthenticated middleware to this route.

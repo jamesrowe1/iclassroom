@@ -13,14 +13,14 @@
                             <!-- Element that gets date/time? -->
                         </div>
                     </div>
-                    <div>
-                        <label for="users">Who would you like to work with?</label>
-                        <!-- Can we render a list of Users here? -->
-                        <!-- <select name="users" id="user"> -->
-                    </div>
                     <div class="form-group">
-                        <label for="inputEventTitle">Who would you like to work with?</label>
-                        <input type="text" class="form-control" id="event-title-input" placeholder="Homework Help">
+                        <label for="users">Who would you like to work with?</label>
+                        <!-- Dropdown Trigger -->
+                            <a class='dropdown-trigger btn' href='#' data-target='usersDropdown'>Select Tutor</a>
+
+                            <!-- Dropdown Structure -->
+                            <ul id='usersDropdown' class='dropdown-content'>
+                            </ul>
                     </div>
                     <div style="display: none" id="alert" class="alert alert-danger" role="alert">
                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -29,7 +29,7 @@
                     <button type="submit" class="btn btn-default">Sign Up</button>
                 </form>
                 <br />
-                <p>Or log in <a href="/login">here</a></p>
             </div>
         </div>
     </div>
+      <script src="/js/schedule.js"></script>

@@ -55,4 +55,11 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.get("/api/users", (req, res) => {
+    db.User.findAll({}).then(dbUsers => {
+      console.log(dbUsers);
+      res.json(dbUsers);
+    });
+  });
 };
