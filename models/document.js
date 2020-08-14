@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  const Document = sequelize.define("document", {
+  const Document = sequelize.define("Document", {
     // The title of the document
     title: {
       type: DataTypes.STRING,

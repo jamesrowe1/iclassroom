@@ -1,6 +1,8 @@
-const dropdown = $("#usersDropdown");
+const dropdown = $("#typeInput");
 let users;
 const studentRequesting = $("#studentRequesting");
+const schedule = $("form.schedule");
+const workOn = $("#workOn");
 
 function getUsers() {
   $.get("/api/users", data => {
@@ -8,9 +10,9 @@ function getUsers() {
     users = data;
     users.forEach(student => {
       dropdown.append(
-        $("<li />")
-          .val(student.id)
-          .text(student.firstName + " " + student.lastName)
+        $(
+          `<option value = ${student.id}> ${student.firstName} ${student.lastName}</option>`
+        )
       );
     });
   });
@@ -20,6 +22,12 @@ getUsers();
 
 $(".dropdown-trigger").dropdown();
 
-function scheduleSession() {
-  console.log(usersDropdown.val());
-}
+schedule.on("submit", event => {
+  event.preventDefault();
+  const userData = {
+    studentRequesting: studentRequesting.text(),
+    tutor: dropdown.val(),
+    workOn: workOn.val().trim()
+  };
+  console.log(userData);
+});
