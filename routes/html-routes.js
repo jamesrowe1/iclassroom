@@ -22,15 +22,7 @@ module.exports = function(app) {
   });
 
   // grade
-<<<<<<< HEAD
   app.get("/docrender/:id", isAuthenticated, (req, res) => {
-=======
-  app.get("/add-a-grade/:id", isAuthenticated, (req, res) => {
-    res.render("doc-render", { layout: "main" });
-  });
-
-  app.get("/test", isAuthenticated, (req, res) => {
->>>>>>> 96bb6228e8b9af2e941c031b3c0489fec998aed2
     res.render("doc-render", { layout: "main" });
   });
 
