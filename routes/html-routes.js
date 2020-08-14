@@ -20,8 +20,12 @@ module.exports = function(app) {
   app.get("/schedule", isAuthenticated, (req, res) => {
     res.render("schedule", { layout: "main" });
   });
-
-  // test
+ 
+   // grade
+   app.get("/add-a-grade/:id", isAuthenticated, (req, res) => {
+    res.render("doc-render", { layout: "main" });
+  });
+  
   app.get("/test", isAuthenticated, (req, res) => {
     res.render("doc-render", { layout: "main" });
   });
@@ -30,9 +34,7 @@ module.exports = function(app) {
     res.render("newdoc", { layout: "main" });
   });
 
-  app.get("/docrender/:id", isAuthenticated, (req, res) => {
-    res.render("doc-render", { layout: "main" });
-  });
+  
 
   app.get("/schedule", isAuthenticated, (req, res) => {
     res.render("schedule", { layout: "main" });
