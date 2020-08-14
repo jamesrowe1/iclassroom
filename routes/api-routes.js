@@ -38,6 +38,7 @@ module.exports = function(app) {
   });
 
   app.post("/api/newdoc", isAuthenticated, (req, res) => {
+    console.log(req.body);
     db.Document.create({
       title: req.body.title,
       body: req.body.body,

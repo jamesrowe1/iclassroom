@@ -3,6 +3,7 @@ const path = require("path");
 
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
+const db = require("../models");
 
 module.exports = function(app) {
   app.get("/", (req, res) => {
@@ -21,9 +22,19 @@ module.exports = function(app) {
     res.render("schedule", { layout: "main", user: req.user });
   });
 
-  // grade
+  // render a document
   app.get("/docrender/:id", isAuthenticated, (req, res) => {
-    res.render("doc-render", { layout: "main", user: req.user });
+    db.Document.findOne({
+      where: { id: req.params.id },
+      include: db.User
+    }).then(homework => {
+      console.log(homework);
+      res.json("doc-render", {
+        layout: "main",
+        user: req.user,
+        homework: homework
+      });
+    });
   });
 
   app.get("/newdoc", isAuthenticated, (req, res) => {

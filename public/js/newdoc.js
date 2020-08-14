@@ -3,15 +3,18 @@ $(document).ready(() => {
   const typeChoice = $("#type-choice");
   const titleInput = $("#document-title");
   const bodyInput = $("#document-body");
-
+  const newDocForm = $("form.newDocForm");
+  const studentSubmitting = $("#studentSubmitting");
   // When the signup button is clicked, we validate the email and password are not blank
   newDocForm.on("submit", event => {
     event.preventDefault();
+    console.log("yo");
     const docData = {
       title: titleInput.val().trim(),
       body: bodyInput.val().trim(),
       documentType: typeChoice.val().trim()
     };
+    console.log(docData);
     if (!docData.title || !docData.body || !docData.documentType) {
       return;
     }
@@ -19,18 +22,19 @@ $(document).ready(() => {
     createNewDoc(
       docData.title,
       docData.body,
-      docData.documentType
-      // How do include id of current user?
+      docData.documentType,
+      studentSubmitting.text()
     );
   });
 
   // Does a post to the newdoc route. If successful, we are redirected to the render dashboard page
   // Otherwise we log any errors
-  function createNewDoc(title, body, documentType) {
+  function createNewDoc(title, body, documentType, studentId) {
     $.post("/api/newdoc", {
       title: title,
       body: body,
-      documentType: documentType
+      documentType: documentType,
+      id: studentId
     })
       .then(() => {
         // Remember to update with correct route for dashboard page
