@@ -23,25 +23,25 @@ module.exports = function(app) {
 
   // grade
   app.get("/docrender/:id", isAuthenticated, (req, res) => {
-    res.render("doc-render", { layout: "main" });
+    res.render("doc-render", { layout: "main", user: req.user });
   });
 
   app.get("/newdoc", isAuthenticated, (req, res) => {
-    res.render("newdoc", { layout: "main" });
+    res.render("newdoc", { layout: "main", user: req.user });
   });
 
   app.get("/schedule", isAuthenticated, (req, res) => {
-    res.render("schedule", { layout: "main" });
+    res.render("schedule", { layout: "main", user: req.user });
   });
 
-  app.get("/dashboard", (req, res) => {
-    res.render("dashboard", { layout: "main" });
+  app.get("/dashboard", isAuthenticated, (req, res) => {
+    res.render("dashboard", { layout: "main", user: req.user });
   });
 
-  app.get("/teacher-dashboard", (req, res) => {
-    res.render("teacher", { layout: "main" });
+  app.get("/teacher-dashboard", isAuthenticated, (req, res) => {
+    res.render("teacher", { layout: "main", user: req.user });
   });
-  
+
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, (req, res) => {

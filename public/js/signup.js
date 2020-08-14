@@ -43,7 +43,7 @@ $(document).ready(() => {
       role: role
     })
       .then(() => {
-        window.location.replace("/schedule");
+        window.location.replace("/dashboard");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);

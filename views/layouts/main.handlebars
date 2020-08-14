@@ -20,28 +20,41 @@
 <body>
 	<!-- NAVBAR -->
     <nav class="nav-extended grey darken-3">
+        {{#if user}}
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo"><span class="logo purple-text text-lighten-2"></span>Teacher Reacher</a>
+          <a href="/" class="brand-logo"><span class="logo purple-text text-lighten-2"></span>Teacher Reacher</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">Menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="/dashboard">Dashboard</a></li>
             <li><a href="/teacher-dashboard">Teacher Dashboard</a></li>
             <li><a href="/newdoc">Create Notes</a></li>
-            <li><a href="/signup">Sign up</a></li>
-            <li><a href="/login">Login</a></li>
             <li><a href="/schedule">Schedule Session</a></li>
+            <li><a href="/logout">Logout</a></li>
           </ul>
         </div>
       </nav class="side-nav-color" >
       <ul class="sidenav" id="mobile-demo">
-            <li><a href="#dashboard">Dashboard</a></li>
-            <li><a href="#gradebook">Gradebook</a></li>
-            <li><a href="#teacher-dashboard">Teacher Dashboard</a></li>
-            <li><a href="#notes">Notes</a></li>
-            <li><a href="#flashcards">Flashcards</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/teacher-dashboard">Teacher Dashboard</a></li>
+            <li><a href="/newdoc">Create Notes</a></li>
+            <li><a href="/schedule">Schedule Session</a></li>
+            <li><a href="/logout">Logout</a></li>
+      </ul>
+      {{else}}
+        <div class="nav-wrapper">
+          <a href="/" class="brand-logo"><span class="logo purple-text text-lighten-2"></span>Teacher Reacher</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">Menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/signup">Sign up</a></li>
+            <li><a href="/login">Login</a></li>
+          </ul>
+        </div>
+      </nav class="side-nav-color" >
+      <ul class="sidenav" id="mobile-demo">
             <li><a href="/signup">Sign up</a></li>
             <li><a href="/login">Login</a></li>
       </ul>
+      {{/if}}
 	{{{ body }}}
 
 	 <!-- FOOTER -->
