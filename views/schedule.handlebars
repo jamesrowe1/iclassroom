@@ -4,32 +4,39 @@
                 <h2>Schedule Session:</h2>
                 <form class="schedule">
                     <div class="form-group">
-                        <label for="inputEventTitle">What do you want to work on?</label>
-                        <input type="text" class="form-control" id="event-title-input" placeholder="Homework Help">
+                        <label style="display: none" for="nameOfStudent" id="studentRequesting">{{ user.id }}</label>
                     </div>
                     <div class="form-group">
-                        <label for="selectDate">When do you want to work together?</label>
+                        <label for="inputEventTitle">What do you want to work on?</label>
+                        <input type="text" class="form-control" id="workOn" placeholder="Homework Help">
+                    </div>
+                    <div class="form-group">
+                        <label for="selectDate">What day do you want to work together?</label>
                         <div>
-                            <!-- Element that gets date/time? -->
+                            <input type="text" class="datepicker">
+                        </div>
+                    </div><div class="form-group">
+                        <label for="selectDate">What time do you want to work together?</label>
+                        <div>
+                            <input type="text" class="timepicker">
                         </div>
                     </div>
-                    <div>
-                        <label for="users">Who would you like to work with?</label>
-                        <!-- Can we render a list of Users here? -->
-                        <!-- <select name="users" id="user"> -->
-                    </div>
                     <div class="form-group">
-                        <label for="inputEventTitle">Who would you like to work with?</label>
-                        <input type="text" class="form-control" id="event-title-input" placeholder="Homework Help">
+                        <label for="users">Who would you like to work with?</label>
+                        <!-- Dropdown Trigger -->
+                            <select name="role" class="form-control" id="typeInput" placeholder="Tutor">
+                                
+                            </select>
                     </div>
                     <div style="display: none" id="alert" class="alert alert-danger" role="alert">
                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                         <span class="sr-only">Error:</span> <span class="msg"></span>
                     </div>
-                    <button type="submit" class="btn btn-default">Sign Up</button>
+                    <button type="submit" class="btn btn-default">Schedule Session</button>
+                
                 </form>
                 <br />
-                <p>Or log in <a href="/login">here</a></p>
             </div>
         </div>
     </div>
+      <script src="/js/schedule.js"></script>
