@@ -1,29 +1,25 @@
 module.exports = function(sequelize, DataTypes) {
   const Session = sequelize.define("Session", {
     // The email cannot be null, and must be a proper email before creation
-    eventTitle: {
+    // studentRequesting: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false
+    // },
+    // tutor: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false
+    // },
+    date: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    month: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      len: [1, 2]
+    time: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
-    day: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      len: [1, 2]
-    },
-    hour: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      len: [1, 2]
-    },
-    minute: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      len: [2]
+    subject: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   });
 
@@ -33,13 +29,16 @@ module.exports = function(sequelize, DataTypes) {
     Session.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
-      }
+      },
+      as: "studentRequesting"
     });
-  };
 
-  Session.associate = function(models) {
-    // Associating Sessions with Users
-    Session.hasMany(models.User, {});
+    Session.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      },
+      as: "tutor"
+    });
   };
 
   return Session;
