@@ -1,29 +1,25 @@
 module.exports = function(sequelize, DataTypes) {
   const Session = sequelize.define("Session", {
     // The email cannot be null, and must be a proper email before creation
-    eventTitle: {
+    studentRequesting: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    month: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      len: [1, 2]
+    tutor: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
-    day: {
+    date: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      len: [1, 2]
+      allowNull: false
     },
-    hour: {
+    time: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      len: [1, 2]
+      allowNull: false
     },
-    minute: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      len: [2]
+    subject: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   });
 

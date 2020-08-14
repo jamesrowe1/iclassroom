@@ -16,13 +16,26 @@ module.exports = function(app) {
   app.get("/signup", (req, res) => {
     res.render("signup", { layout: "main" });
   });
+
   app.get("/schedule", isAuthenticated, (req, res) => {
     res.render("schedule", { layout: "main", user: req.user });
   });
+
   // test
   app.get("/test", isAuthenticated, (req, res) => {
     res.render("doc-render", { layout: "main" });
   });
+<<<<<<< HEAD
+=======
+
+  app.get("/newdoc", isAuthenticated, (req, res) => {
+    res.render("newdoc", { layout: "main" });
+  });
+
+  app.get("/docrender/:id", isAuthenticated, (req, res) => {
+    res.render("doc-render", { layout: "main" });
+  });
+>>>>>>> f20ce2dafb20706ed0453b8d0304f4a0cbb6b74b
 
   app.get("/schedule", isAuthenticated, (req, res) => {
     res.render("schedule", { layout: "main" });

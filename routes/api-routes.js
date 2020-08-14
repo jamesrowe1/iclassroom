@@ -46,13 +46,18 @@ module.exports = function(app) {
     }).then(result => {
       res.json(result);
     });
-    // .then(() => {
-    //   res.redirect(307, "/api/document");
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    //   res.status(401).json(err);
-    // });
+  });
+
+  app.post("/api/schedule", isAuthenticated, (req, res) => {
+    db.Sessions.create({
+      studentRequesting: req.body.studentRequesting,
+      tutor: req.body.tutor,
+      subject: req.body.workOn,
+      time: req.body.timePicked,
+      date: req.body.datePicked
+    }).then(result => {
+      res.json(result);
+    });
   });
 
   // Route for logging user out

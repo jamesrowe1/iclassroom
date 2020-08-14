@@ -3,6 +3,17 @@ let users;
 const studentRequesting = $("#studentRequesting");
 const schedule = $("form.schedule");
 const workOn = $("#workOn");
+const datePicked = $(".datepicker");
+const timePicked = $(".timepicker");
+
+//inits
+$(".dropdown-trigger").dropdown();
+$(document).ready(() => {
+  $(".timepicker").timepicker();
+});
+$(document).ready(() => {
+  $(".datepicker").datepicker();
+});
 
 function getUsers() {
   $.get("/api/users", data => {
@@ -20,14 +31,37 @@ function getUsers() {
 
 getUsers();
 
-$(".dropdown-trigger").dropdown();
-
 schedule.on("submit", event => {
   event.preventDefault();
   const userData = {
     studentRequesting: studentRequesting.text(),
     tutor: dropdown.val(),
-    workOn: workOn.val().trim()
+    workOn: workOn.val().trim(),
+    timePicked: timePicked.val(),
+    datePicked: datePicked.val()
   };
   console.log(userData);
+  addSession(userData);
 });
+
+function addSession(userData) {
+  $.post(
+    "api/schedule",
+    {
+      studentRequesting: userDatastudentRequesting,
+      tutor: userDatatutor,
+      subject: userData.workOn,
+      time: userData.timePicked,
+      date: userData.datePicked
+    }
+      .then(() => {
+        window.location.replace("/");
+      })
+      .catch(handleScheduleErr)
+  );
+
+  function handleScheduleErr(err) {
+    $("#alert .msg").text(err.responseJSON);
+    $("#alert").fadeIn(500);
+  }
+}
