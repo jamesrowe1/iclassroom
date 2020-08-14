@@ -18,15 +18,11 @@ module.exports = function(app) {
   });
 
   app.get("/schedule", isAuthenticated, (req, res) => {
-    res.render("schedule", { layout: "main" });
+    res.render("schedule", { layout: "main", user: req.user });
   });
- 
-   // grade
-   app.get("/add-a-grade/:id", isAuthenticated, (req, res) => {
-    res.render("doc-render", { layout: "main" });
-  });
-  
-  app.get("/test", isAuthenticated, (req, res) => {
+
+  // grade
+  app.get("/docrender/:id", isAuthenticated, (req, res) => {
     res.render("doc-render", { layout: "main" });
   });
 
@@ -34,10 +30,12 @@ module.exports = function(app) {
     res.render("newdoc", { layout: "main" });
   });
 
-  
-
   app.get("/schedule", isAuthenticated, (req, res) => {
     res.render("schedule", { layout: "main" });
+  });
+
+  app.get("/dashboard", (req, res) => {
+    res.render("dashboard", { layout: "main" });
   });
 
   // Here we've add our isAuthenticated middleware to this route.

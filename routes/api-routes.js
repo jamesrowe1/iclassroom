@@ -46,13 +46,19 @@ module.exports = function(app) {
     }).then(result => {
       res.json(result);
     });
-    // .then(() => {
-    //   res.redirect(307, "/api/document");
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    //   res.status(401).json(err);
-    // });
+  });
+
+  app.post("/api/schedule", isAuthenticated, (req, res) => {
+    console.log(req.body);
+    db.Session.create({
+      studentRequestingId: req.body.studentRequesting,
+      tutorId: req.body.tutor,
+      subject: req.body.subject,
+      time: req.body.time,
+      date: req.body.date
+    }).then(result => {
+      res.json(result);
+    });
   });
 
   // Route for logging user out
@@ -74,5 +80,12 @@ module.exports = function(app) {
         id: req.user.id
       });
     }
+  });
+
+  app.get("/api/users", (req, res) => {
+    db.User.findAll({}).then(dbUsers => {
+      console.log(dbUsers);
+      res.json(dbUsers);
+    });
   });
 };
