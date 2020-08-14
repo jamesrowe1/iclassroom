@@ -41,10 +41,5 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
-  // Session.associate = function(models) {
-  //   // Associating Sessions with Users
-  //   Session.hasMany(models.User, {});
-  // };
-
   return Session;
 };
