@@ -12,7 +12,7 @@ $(document).ready(() => {
             body: bodyInput.val().trim(),
             documentType: typeChoice.val().trim()
         };
-        if (!docData.title || !docData.body) {
+        if (!docData.title || !docData.body || !docData.documentType) {
             return;
         }
         // If we have an email and password, run the signUpUser function
