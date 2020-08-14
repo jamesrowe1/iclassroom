@@ -20,12 +20,12 @@ module.exports = function(app) {
   app.get("/schedule", isAuthenticated, (req, res) => {
     res.render("schedule", { layout: "main", user: req.user });
   });
- 
-   // grade
-   app.get("/add-a-grade/:id", isAuthenticated, (req, res) => {
+
+  // grade
+  app.get("/add-a-grade/:id", isAuthenticated, (req, res) => {
     res.render("doc-render", { layout: "main" });
   });
-  
+
   app.get("/test", isAuthenticated, (req, res) => {
     res.render("doc-render", { layout: "main" });
   });
@@ -33,8 +33,6 @@ module.exports = function(app) {
   app.get("/newdoc", isAuthenticated, (req, res) => {
     res.render("newdoc", { layout: "main" });
   });
-
-  
 
   app.get("/schedule", isAuthenticated, (req, res) => {
     res.render("schedule", { layout: "main" });

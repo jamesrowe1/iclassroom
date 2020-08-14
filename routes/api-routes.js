@@ -51,11 +51,11 @@ module.exports = function(app) {
   app.post("/api/schedule", isAuthenticated, (req, res) => {
     console.log(req.body);
     db.Session.create({
-      studentRequesting: req.body.studentRequesting,
-      tutor: req.body.tutor,
-      subject: req.body.workOn,
-      time: req.body.timePicked,
-      date: req.body.datePicked
+      studentRequestingId: req.body.studentRequesting,
+      tutorId: req.body.tutor,
+      subject: req.body.subject,
+      time: req.body.time,
+      date: req.body.date
     }).then(result => {
       res.json(result);
     });

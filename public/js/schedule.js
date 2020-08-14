@@ -51,23 +51,20 @@ schedule.on("submit", event => {
 });
 
 function addSession(studentRequesting, tutor, workOn, datePicked, timePicked) {
-  $.post(
-    "api/schedule",
-    {
-      studentRequesting: studentRequesting,
-      tutor: tutor,
-      subject: workOn,
-      time: timePicked,
-      date: datePicked
-    }
-      .then(() => {
-        window.location.replace("/");
-      })
-      .catch(handleScheduleErr)
-  );
+  $.post("api/schedule", {
+    studentRequesting: studentRequesting,
+    tutor: tutor,
+    subject: workOn,
+    time: timePicked,
+    date: datePicked
+  })
+    .then(() => {
+      window.location.replace("/");
+    })
+    .catch(handleScheduleErr);
+}
 
-  function handleScheduleErr(err) {
-    $("#alert .msg").text(err.responseJSON);
-    $("#alert").fadeIn(500);
-  }
+function handleScheduleErr(err) {
+  $("#alert .msg").text(err.responseJSON);
+  $("#alert").fadeIn(500);
 }
