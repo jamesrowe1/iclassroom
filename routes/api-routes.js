@@ -3,6 +3,8 @@ const db = require("../models");
 const passport = require("../config/passport");
 //const express = require("express");
 
+const isAuthenticated = require("../config/middleware/isAuthenticated");
+
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -33,6 +35,24 @@ module.exports = function(app) {
         console.log(err);
         res.status(401).json(err);
       });
+  });
+
+  app.post("/api/newdoc", isAuthenticated, (req, res) => {
+    db.Document.create({
+      title: req.body.title,
+      body: req.body.body,
+      documentType: req.body.documentType,
+      UserId: req.user.id
+    }).then(result => {
+      res.json(result);
+    });
+    // .then(() => {
+    //   res.redirect(307, "/api/document");
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    //   res.status(401).json(err);
+    // });
   });
 
   // Route for logging user out
