@@ -19,6 +19,11 @@ module.exports = function(app) {
   app.get("/schedule", isAuthenticated, (req, res) => {
     res.render("schedule", { layout: "main" });
   });
+  // test
+  app.get("/test", isAuthenticated, (req, res) => {
+    res.render("doc-render", { layout: "main" });
+  });
+  
 
   app.get("/schedule", isAuthenticated, (req, res) => {
     res.render("schedule", { layout: "main" });
@@ -30,3 +35,4 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 };
+

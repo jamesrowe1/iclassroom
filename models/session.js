@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   const Session = sequelize.define("Session", {
     // The email cannot be null, and must be a proper email before creation
     eventTitle: {
@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  Session.associate = function(models) {
+  Session.associate = function (models) {
     // We're saying that a Document should belong to an User
     // A Document can't be created without an User due to the foreign key constraint
     Session.belongsTo(models.User, {
@@ -37,10 +37,17 @@ module.exports = function(sequelize, DataTypes) {
     });
   };
 
-  Session.associate = function(models) {
+  Session.associate = function (models) {
     // Associating Sessions with Users
     Session.hasMany(models.User, {});
   };
 
   return Session;
+};
+Session.associate = function (models) {
+  // Associating Sessions with Users
+  Session.hasMany(models.User, {});
+};
+
+return Session;
 };
