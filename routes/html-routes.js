@@ -16,14 +16,29 @@ module.exports = function(app) {
   app.get("/signup", (req, res) => {
     res.render("signup", { layout: "main" });
   });
+
   app.get("/schedule", isAuthenticated, (req, res) => {
     res.render("schedule", { layout: "main" });
   });
-  // test
-  app.get("/test", isAuthenticated, (req, res) => {
+ 
+   // grade
+   app.get("/add-a-grade/:id", isAuthenticated, (req, res) => {
     res.render("doc-render", { layout: "main" });
   });
   
+  app.get("/test", isAuthenticated, (req, res) => {
+    res.render("doc-render", { layout: "main" });
+  });
+
+  app.get("/newdoc", isAuthenticated, (req, res) => {
+    res.render("newdoc", { layout: "main" });
+  });
+
+  
+
+  app.get("/schedule", isAuthenticated, (req, res) => {
+    res.render("schedule", { layout: "main" });
+  });
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
@@ -31,4 +46,3 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 };
-
