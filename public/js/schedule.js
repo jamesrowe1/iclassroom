@@ -20,4 +20,6 @@ getUsers();
 
 $(".dropdown-trigger").dropdown();
 
-function scheduleSession() {}
+function scheduleSession() {
+  console.log(usersDropdown.val());
+}
