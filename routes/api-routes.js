@@ -20,13 +20,17 @@ module.exports = function(app) {
   // otherwise send back an error
   app.post("/api/signup", (req, res) => {
     db.User.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      role: req.body.role
     })
       .then(() => {
         res.redirect(307, "/api/login");
       })
       .catch(err => {
+        console.log(err);
         res.status(401).json(err);
       });
   });
@@ -35,9 +39,6 @@ module.exports = function(app) {
   app.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/");
-  });
-  app.get("/", (req, res) => {
-    res.render("index", { layout: "main" });
   });
 
   // Route for getting some data about our user to be used client side

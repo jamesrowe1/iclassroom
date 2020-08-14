@@ -26,30 +26,31 @@ module.exports = function (sequelize, DataTypes) {
     // The password cannot be null
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
 
     role: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   });
 
-  User.associate = function (models) {
+  User.associate = function(models) {
     // Associating User with Sessions
     User.hasMany(models.Session, {
       onDelete: "cascade"
     });
   };
 
-  User.associate = function (models) {
+  User.associate = function(models) {
     // Associating User with Documents
     User.hasMany(models.Document, {
       onDelete: "cascade"
     });
   };
 
-  User.associate = function (models) {
+  //I think this is in the wrong spot
+  User.associate = function(models) {
     // We're saying that a Document should belong to an User
     // A Document can't be created without an User due to the foreign key constraint
     User.belongsTo(models.Session, {
@@ -60,13 +61,13 @@ module.exports = function (sequelize, DataTypes) {
   };
 
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
-  User.prototype.validPassword = function (password) {
+  User.prototype.validPassword = function(password) {
     console.log(`${password} as opposed to ${this.password}`);
     return bcrypt.compareSync(password, this.password);
   };
   // Hooks are automatic methods that run during various phases of the User Model lifecycle
   // In this case, before a User is created, we will automatically hash their password
-  User.addHook("beforeCreate", function (user) {
+  User.addHook("beforeCreate", user => {
     user.password = bcrypt.hashSync(
       user.password,
       bcrypt.genSaltSync(10),
