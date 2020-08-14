@@ -40,19 +40,25 @@ schedule.on("submit", event => {
     timePicked: timePicked.val(),
     datePicked: datePicked.val()
   };
-  console.log(userData);
-  addSession(userData);
+  console.log(userData.studentRequesting);
+  addSession(
+    userData.studentRequesting,
+    userData.tutor,
+    userData.workOn,
+    userData.datePicked,
+    userData.timePicked
+  );
 });
 
-function addSession(userData) {
+function addSession(studentRequesting, tutor, workOn, datePicked, timePicked) {
   $.post(
     "api/schedule",
     {
-      studentRequesting: userDatastudentRequesting,
-      tutor: userDatatutor,
-      subject: userData.workOn,
-      time: userData.timePicked,
-      date: userData.datePicked
+      studentRequesting: studentRequesting,
+      tutor: tutor,
+      subject: workOn,
+      time: timePicked,
+      date: datePicked
     }
       .then(() => {
         window.location.replace("/");

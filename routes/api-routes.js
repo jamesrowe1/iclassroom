@@ -49,7 +49,8 @@ module.exports = function(app) {
   });
 
   app.post("/api/schedule", isAuthenticated, (req, res) => {
-    db.Sessions.create({
+    console.log(req.body);
+    db.Session.create({
       studentRequesting: req.body.studentRequesting,
       tutor: req.body.tutor,
       subject: req.body.workOn,
