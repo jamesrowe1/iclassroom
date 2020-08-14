@@ -1,5 +1,5 @@
-module.exports = function (sequelize, DataTypes) {
-  const Document = sequelize.define("document", {
+module.exports = function(sequelize, DataTypes) {
+  const Document = sequelize.define("Document", {
     // The title of the document
     title: {
       type: DataTypes.STRING,
@@ -26,7 +26,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false
     }
   });
-  Document.associate = function (models) {
+  Document.associate = function(models) {
     // We're saying that a Document should belong to an User
     // A Document can't be created without an User due to the foreign key constraint
     Document.belongsTo(models.User, {
