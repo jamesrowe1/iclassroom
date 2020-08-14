@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "!Cupcakes1324",
+=======
+    "password": "ya777nks",
+>>>>>>> 02d42b0bf9a5deca47b286e46833cd67b6204576
     "database": "teacherreacher",
     "host": "localhost",
     "dialect": "mysql"
