@@ -44,10 +44,10 @@ module.exports = function (sequelize, DataTypes) {
 
   return Session;
 };
-Session.associate = function (models) {
-  // Associating Sessions with Users
-  Session.hasMany(models.User, {});
-};
+// Session.associate = function (models) {
+//   // Associating Sessions with Users
+//   Session.hasMany(models.User, {});
+// };
 
-return Session;
-};
+// return Session;
+// };
