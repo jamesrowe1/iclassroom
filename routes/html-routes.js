@@ -19,10 +19,11 @@ module.exports = function(app) {
   app.get("/schedule", isAuthenticated, (req, res) => {
     res.render("schedule", { layout: "main" });
   });
-  // test
-  app.get("/test", isAuthenticated, (req, res) => {
+  // grade
+  app.get("/add-a-grade", isAuthenticated, (req, res) => {
     res.render("doc-render", { layout: "main" });
   });
+  
   
 
   // Here we've add our isAuthenticated middleware to this route.
