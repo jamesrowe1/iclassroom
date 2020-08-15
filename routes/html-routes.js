@@ -5,7 +5,7 @@ const path = require("path");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 const db = require("../models");
 
-module.exports = function (app) {
+module.exports = function(app) {
   app.get("/", (req, res) => {
     res.render("index", { layout: "main" });
   });
@@ -28,7 +28,6 @@ module.exports = function (app) {
       where: { id: req.params.id },
       include: db.User
     }).then(homework => {
-      console.log(homework);
       res.json("doc-render", {
         layout: "main",
         user: req.user,

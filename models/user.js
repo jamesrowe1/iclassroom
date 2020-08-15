@@ -35,6 +35,18 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
+  // Associating User with Sessions
+  User.belongsTo(User, {
+    as: "teacher",
+    foreignKey: "teacherId"
+  });
+
+  // Associating User with Sessions
+  User.hasMany(User, {
+    as: "student",
+    foreignKey: "studentId"
+  });
+
   User.associate = function(models) {
     // Associating User with Sessions
     User.hasMany(models.Session, {
@@ -48,17 +60,6 @@ module.exports = function(sequelize, DataTypes) {
       onDelete: "cascade"
     });
   };
-
-  //I think this is in the wrong spot
-  // User.associate = function(models) {
-  //   // We're saying that a Document should belong to an User
-  //   // A Document can't be created without an User due to the foreign key constraint
-  //   User.belongsTo(models.Session, {
-  //     foreignKey: {
-  //       allowNull: false
-  //     }
-  //   });
-  // };
 
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   User.prototype.validPassword = function(password) {
