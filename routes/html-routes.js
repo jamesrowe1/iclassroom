@@ -53,8 +53,8 @@ module.exports = function (app) {
     res.render("teacher", { layout: "main", user: req.user });
   });
 
-  app.get("/gradebook", (req, res) => {
-    res.render("gradebook", { layout: "main" });
+  app.get("/gradebook", isAuthenticated, (req, res) => {
+    res.render("gradebook", { layout: "main", user: req.user });
   });
 
   // Here we've add our isAuthenticated middleware to this route.
