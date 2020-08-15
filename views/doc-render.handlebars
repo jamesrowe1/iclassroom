@@ -1,31 +1,32 @@
-
 <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <h2>Homework:</h2>
-                <label style="display: none" for="nameOfStudent" id="studentSubmitting">{{ user.id }}</label>
-                <h4>Title: {{homework.dataValues.title}}</h2>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h2>Homework:</h2>
+            <label style="display: none" for="nameOfStudent" id="studentSubmitting">{{ user.id }}</label>
+            <label style="display: none" for="idOfHomework" id="idOfHomework">{{ homework.dataValues.id }}</label>
+            <h4>Title: {{homework.dataValues.title}}</h2>
                 <h5>Body: {{homework.dataValues.body}}</h3>
-                <h5>Author: {{homework.dataValues.User.dataValues.firstName}} {{homework.dataValues.User.dataValues.lastName}}</h3>
-                 <div class="row">
-                    <form class="col s12">
+                    <h5>Author: {{homework.dataValues.User.dataValues.firstName}}
+                        {{homework.dataValues.User.dataValues.lastName}}</h3>
                         <div class="row">
-                            <div class="input-field col s12">
-                                <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                <label for="textarea1">Feedback</label>
-                                <button type="add-feedback" class="btn btn-default">Add your feedback</button>
-                            </div>
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                        <label for="textarea1">Feedback</label>
+                                        <button type="add-feedback" class="btn btn-default">Add your feedback</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                 </div>
-        
-                
-                 <button type="add-a-grade" class="btn btn-default">Add a grade</button>
-              
-            </div>
+
+                        <div class="input-field col s12">
+                            <textarea id="gradearea1" class="materialize-textarea"></textarea>
+                            <label for="textarea1">Grade</label>
+                        </div>
+                        <button type="add-a-grade" class="btn btn-default" id="submit-grade">Add a grade</button>
+
         </div>
     </div>
-
-
-
-
+</div>
+<script src="/js/renderdoc.js"></script>
