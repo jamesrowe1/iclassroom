@@ -27,6 +27,9 @@ $(document).ready(() => {
       role: typeInput.val().trim(),
       teacherId: dropdown.val()
     };
+    if (userData.teacherId === "") {
+      userData.teacherId = null;
+    }
     if (!userData.email || !userData.password) {
       return;
     }
