@@ -1,21 +1,18 @@
-$(document).ready(() => {
-  // Getting references to our form and input
-  const signUpForm = $("form.signup");
-  const firstNameInput = $("#firstNameInput");
-  const lastNameInput = $("#lastNameInput");
-  const emailInput = $("#emailInput");
-  const passwordInput = $("#passwordInput");
-  const typeInput = $("#typeInput");
-  const selectTeacher = $("#selectTeacher");
-  const selectTeacherFormGroup = $("#selectTeacherFormGroup");
+// Getting references to our form and input
+const signUpForm = $("form.signup");
+const firstNameInput = $("#firstNameInput");
+const lastNameInput = $("#lastNameInput");
+const emailInput = $("#emailInput");
+const passwordInput = $("#passwordInput");
+const typeInput = $("#typeInput");
+const dropdown = $("#selectTeacher");
+const selectTeacherFormGroup = $("#selectTeacherFormGroup");
 
+$(document).ready(() => {
   typeInput.on("change", function() {
-    console.log(this.value);
     if (this.value === "student") {
-      console.log("stud");
       selectTeacherFormGroup.show();
     } else {
-      console.log("teach");
       selectTeacherFormGroup.hide();
     }
   });
@@ -27,7 +24,8 @@ $(document).ready(() => {
       lastName: lastNameInput.val().trim(),
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
-      role: typeInput.val().trim()
+      role: typeInput.val().trim(),
+      teacherId: dropdown.val()
     };
     if (!userData.email || !userData.password) {
       return;
@@ -38,7 +36,8 @@ $(document).ready(() => {
       userData.lastName,
       userData.email,
       userData.password,
-      userData.role
+      userData.role,
+      userData.teacherId
     );
     emailInput.val("");
     passwordInput.val("");
@@ -46,13 +45,14 @@ $(document).ready(() => {
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(firstName, lastName, email, password, role) {
+  function signUpUser(firstName, lastName, email, password, role, teacherId) {
     $.post("/api/signup", {
       firstName: firstName,
       lastName: lastName,
       email: email,
       password: password,
-      role: role
+      role: role,
+      teacherId: teacherId
     })
       .then(() => {
         window.location.replace("/dashboard");
@@ -66,3 +66,19 @@ $(document).ready(() => {
     $("#alert").fadeIn(500);
   }
 });
+
+function getUsers() {
+  $.get("/api/users/teachers", data => {
+    users = data;
+    users.forEach(teacher => {
+      console.log(teacher.lastName);
+      dropdown.append(
+        $(
+          `<option value = ${teacher.id}> ${teacher.firstName} ${teacher.lastName}</option>`
+        )
+      );
+    });
+  });
+}
+
+getUsers();

@@ -28,7 +28,6 @@ module.exports = function(app) {
       where: { id: req.params.id },
       include: db.User
     }).then(homework => {
-      console.log(homework);
       res.json("doc-render", {
         layout: "main",
         user: req.user,
