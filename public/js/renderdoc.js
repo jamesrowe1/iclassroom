@@ -3,9 +3,9 @@ $("#submit-grade").on("click", () => {
   const homeworkId = $("#idOfHomework").text();
   console.log(userGrade);
   console.log(homeworkId);
-  $.ajax("/api/renderdoc/" + 1, {
+  $.ajax("/api/renderdoc/", {
     type: "PUT",
-    grade: userGrade,
+    data: { grade: userGrade, id: homeworkId }
   }).then(() => {
     window.location.replace("/gradebook");
   });
