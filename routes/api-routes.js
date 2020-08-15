@@ -56,12 +56,13 @@ module.exports = function(app) {
     });
   });
 
-  app.put("/api/docrender/:id", isAuthenticated, (req, res) => {
+  app.put("/api/renderdoc/", isAuthenticated, (req, res) => {
+    console.log(req.body);
     db.Document.update(
       {
         grade: req.body.grade
       },
-      { where: { id: req.params.id } }
+      { where: { id: req.body.id } }
     );
   });
 
