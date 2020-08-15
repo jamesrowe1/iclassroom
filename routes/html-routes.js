@@ -3,6 +3,7 @@ const path = require("path");
 
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
+const db = require("../models");
 
 module.exports = function(app) {
   app.get("/", (req, res) => {
@@ -21,27 +22,40 @@ module.exports = function(app) {
     res.render("schedule", { layout: "main", user: req.user });
   });
 
-  // grade
+  // render a document
   app.get("/docrender/:id", isAuthenticated, (req, res) => {
-    res.render("doc-render", { layout: "main" });
+    db.Document.findOne({
+      where: { id: req.params.id },
+      include: db.User
+    }).then(homework => {
+      res.json("doc-render", {
+        layout: "main",
+        user: req.user,
+        homework: homework
+      });
+    });
   });
 
   app.get("/newdoc", isAuthenticated, (req, res) => {
-    res.render("newdoc", { layout: "main" });
+    res.render("newdoc", { layout: "main", user: req.user });
   });
 
   app.get("/schedule", isAuthenticated, (req, res) => {
-    res.render("schedule", { layout: "main" });
+    res.render("schedule", { layout: "main", user: req.user });
   });
 
-  app.get("/dashboard", (req, res) => {
-    res.render("dashboard", { layout: "main" });
+  app.get("/dashboard", isAuthenticated, (req, res) => {
+    res.render("dashboard", { layout: "main", user: req.user });
   });
 
-  app.get("/teacher-dashboard", (req, res) => {
-    res.render("teacher", { layout: "main" });
+  app.get("/teacher-dashboard", isAuthenticated, (req, res) => {
+    res.render("teacher", { layout: "main", user: req.user });
   });
-  
+
+  app.get("/gradebook", isAuthenticated, (req, res) => {
+    res.render("gradebook", { layout: "main", user: req.user });
+  });
+
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, (req, res) => {

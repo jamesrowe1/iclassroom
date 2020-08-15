@@ -26,7 +26,8 @@ module.exports = function(app) {
       lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
-      role: req.body.role
+      role: req.body.role,
+      teacherId: req.body.teacherId
     })
       .then(() => {
         res.redirect(307, "/api/login");
@@ -49,7 +50,6 @@ module.exports = function(app) {
   });
 
   app.post("/api/schedule", isAuthenticated, (req, res) => {
-    console.log(req.body);
     db.Session.create({
       studentRequestingId: req.body.studentRequesting,
       tutorId: req.body.tutor,
@@ -84,8 +84,18 @@ module.exports = function(app) {
 
   app.get("/api/users", (req, res) => {
     db.User.findAll({}).then(dbUsers => {
-      console.log(dbUsers);
       res.json(dbUsers);
+    });
+  });
+
+  app.get("/api/users/teachers", (req, res) => {
+    db.User.findAll({
+      where: {
+        role: "teacher"
+      },
+      raw: true
+    }).then(teachers => {
+      res.json(teachers);
     });
   });
 };
