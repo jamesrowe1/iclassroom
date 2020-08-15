@@ -22,7 +22,7 @@ module.exports = function(app) {
   });
 
   // grade
-  app.get("/add-a-grade/:id", isAuthenticated, (req, res) => {
+  app.get("/docrender/:id", isAuthenticated, (req, res) => {
     res.render("doc-render", { layout: "main" });
   });
 
@@ -41,7 +41,7 @@ module.exports = function(app) {
   app.get("/teacher-dashboard", (req, res) => {
     res.render("teacher", { layout: "main" });
   });
-
+  
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, (req, res) => {
