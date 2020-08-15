@@ -1,5 +1,6 @@
 <div class="container">
     <h2 id="grade-header">TEACHER GRADEBOOK</h2>
+
     <table class"striped responsive-table">
         <thead>
             <tr>
@@ -11,7 +12,9 @@
         </thead>
 
         <tbody>
-            {{Homework}}
+            {{#each homework}}
+            {{>grades/grade-block}}
+            {{/each}}
             <tr>
                 <td>Paul</td>
                 <td>Simon</td>

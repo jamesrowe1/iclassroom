@@ -27,7 +27,7 @@ module.exports = function (app) {
       email: req.body.email,
       password: req.body.password,
       role: req.body.role,
-      teacherId: req.body.teacherId
+      teacherId: req.body.teacherId,
     })
       .then(() => {
         res.redirect(307, "/api/login");
@@ -47,6 +47,15 @@ module.exports = function (app) {
     }).then((result) => {
       res.json(result);
     });
+  });
+
+  app.put("/api/docrender/:id", isAuthenticated, (req, res) => {
+    db.Document.update(
+      {
+        grade: req.body.grade,
+      },
+      { where: { id: req.params.id } }
+    );
   });
 
   app.post("/api/schedule", isAuthenticated, (req, res) => {
@@ -83,7 +92,7 @@ module.exports = function (app) {
   });
 
   app.get("/api/users", (req, res) => {
-    db.User.findAll({}).then(dbUsers => {
+    db.User.findAll({}).then((dbUsers) => {
       res.json(dbUsers);
     });
   });
@@ -91,10 +100,10 @@ module.exports = function (app) {
   app.get("/api/users/teachers", (req, res) => {
     db.User.findAll({
       where: {
-        role: "teacher"
+        role: "teacher",
       },
-      raw: true
-    }).then(teachers => {
+      raw: true,
+    }).then((teachers) => {
       res.json(teachers);
     });
   });

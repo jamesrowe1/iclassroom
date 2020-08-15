@@ -28,7 +28,7 @@ module.exports = function (app) {
       where: { id: req.params.id },
       include: db.User,
     }).then((homework) => {
-      res.json("doc-render", {
+      res.render("doc-render", {
         layout: "main",
         user: req.user,
         homework: homework,
@@ -57,7 +57,8 @@ module.exports = function (app) {
       where: { documentType: "homework" },
       include: db.User,
     }).then((homework) => {
-      res.json("gradebook", {
+      console.log(homework);
+      res.render("gradebook", {
         layout: "main",
         user: req.user,
         homework: homework,
