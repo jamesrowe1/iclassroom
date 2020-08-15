@@ -5,7 +5,7 @@ const passport = require("../config/passport");
 
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
@@ -13,7 +13,7 @@ module.exports = function(app) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
-      id: req.user.id
+      id: req.user.id,
     });
   });
 
@@ -26,12 +26,12 @@ module.exports = function(app) {
       lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
-      role: req.body.role
+      role: req.body.role,
     })
       .then(() => {
         res.redirect(307, "/api/login");
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         res.status(401).json(err);
       });
@@ -42,8 +42,8 @@ module.exports = function(app) {
       title: req.body.title,
       body: req.body.body,
       documentType: req.body.documentType,
-      UserId: req.user.id
-    }).then(result => {
+      UserId: req.user.id,
+    }).then((result) => {
       res.json(result);
     });
   });
@@ -55,8 +55,8 @@ module.exports = function(app) {
       tutorId: req.body.tutor,
       subject: req.body.subject,
       time: req.body.time,
-      date: req.body.date
-    }).then(result => {
+      date: req.body.date,
+    }).then((result) => {
       res.json(result);
     });
   });
@@ -77,15 +77,26 @@ module.exports = function(app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         email: req.user.email,
-        id: req.user.id
+        id: req.user.id,
       });
     }
   });
 
   app.get("/api/users", (req, res) => {
-    db.User.findAll({}).then(dbUsers => {
+    db.User.findAll({}).then((dbUsers) => {
       console.log(dbUsers);
       res.json(dbUsers);
+    });
+  });
+
+  app.get("/api/add-a-grade/:id", (req, res) => {
+    db.Document.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [db.User],
+    }).then((document) => {
+      res.json(document);
     });
   });
 };
