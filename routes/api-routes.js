@@ -56,6 +56,15 @@ module.exports = function(app) {
     });
   });
 
+  app.put("/api/docrender/:id", isAuthenticated, (req, res) => {
+    db.Document.update(
+      {
+        grade: req.body.grade
+      },
+      { where: { id: req.params.id } }
+    );
+  });
+
   app.post("/api/schedule", isAuthenticated, (req, res) => {
     db.Session.create({
       studentRequestingId: req.body.studentRequesting,
