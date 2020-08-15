@@ -5,7 +5,7 @@ const path = require("path");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 const db = require("../models");
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.get("/", (req, res) => {
     res.render("index", { layout: "main" });
   });
@@ -51,6 +51,10 @@ module.exports = function(app) {
 
   app.get("/teacher-dashboard", isAuthenticated, (req, res) => {
     res.render("teacher", { layout: "main", user: req.user });
+  });
+
+  app.get("/gradebook", (req, res) => {
+    res.render("gradebook", { layout: "main" });
   });
 
   // Here we've add our isAuthenticated middleware to this route.

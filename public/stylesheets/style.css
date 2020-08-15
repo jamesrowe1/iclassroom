@@ -9,29 +9,26 @@ body {
   /* background-color: #e8f5e9; */
   /* background-color:#f9fbe7; */
   /* background-color:#fff8e1; */
- 
 }
 
 /* add styling to logo */
-.logo{
+.logo {
   font-weight: 100;
   padding-left: 10px;
-
 }
 
 .thin-text {
   font-weight: 300px;
   /* for the shadow on short intro */
   /* https://www.december.com/html/spec/colorrgbadec.html */
-  background: rgba(0, 0, 0, .4);
+  background: rgba(0, 0, 0, 0.4);
   /* background: rgba(0, 0, 255, 0.2); */
   padding: 40px;
   border-radius: 10px;
 }
 
-.section-header{
+.section-header {
   font-weight: 300;
-
 }
 
 .cta {
@@ -39,26 +36,34 @@ body {
   text-shadow: 1px 1px black;
 }
 
-.contact{
+.contact {
   padding-top: 30px;
   background: rgba(0, 0, 255, 0.1);
-  
-
 }
 
-.footer{
+.footer {
   width: 100%;
-  
 }
 
-#img{
+#img {
   height: 200px;
 }
 
 .side-nav-color {
-  background-color:#ede7f6;
+  background-color: #ede7f6;
 }
 
 select {
-  display:block;
+  display: block;
+}
+
+.grades {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#grade-header {
+  text-align: center;
+  color: teal;
 }
