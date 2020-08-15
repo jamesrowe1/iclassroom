@@ -17,7 +17,6 @@ $(document).ready(() => {
 
 function getUsers() {
   $.get("/api/users", data => {
-    console.log("users", data);
     users = data;
     users.forEach(student => {
       dropdown.append(
@@ -40,7 +39,6 @@ schedule.on("submit", event => {
     timePicked: timePicked.val(),
     datePicked: datePicked.val()
   };
-  console.log(userData.studentRequesting);
   addSession(
     userData.studentRequesting,
     userData.tutor,
