@@ -6,16 +6,28 @@ $(document).ready(() => {
   const emailInput = $("#emailInput");
   const passwordInput = $("#passwordInput");
   const typeInput = $("#typeInput");
+  const selectTeacher = $("#selectTeacher");
+  const selectTeacherFormGroup = $("#selectTeacherFormGroup");
 
+  typeInput.on("change", function() {
+    console.log(this.value);
+    if (this.value === "student") {
+      console.log("stud");
+      selectTeacherFormGroup.show();
+    } else {
+      console.log("teach");
+      selectTeacherFormGroup.hide();
+    }
+  });
   // When the signup button is clicked, we validate the email and password are not blank
-  signUpForm.on("submit", (event) => {
+  signUpForm.on("submit", event => {
     event.preventDefault();
     const userData = {
       firstName: firstNameInput.val().trim(),
       lastName: lastNameInput.val().trim(),
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
-      role: typeInput.val().trim(),
+      role: typeInput.val().trim()
     };
     if (!userData.email || !userData.password) {
       return;
@@ -40,7 +52,7 @@ $(document).ready(() => {
       lastName: lastName,
       email: email,
       password: password,
-      role: role,
+      role: role
     })
       .then(() => {
         window.location.replace("/dashboard");
