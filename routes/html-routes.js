@@ -28,7 +28,7 @@ module.exports = function(app) {
       where: { id: req.params.id },
       include: db.User
     }).then(homework => {
-      res.json("doc-render", {
+      res.render("doc-render", {
         layout: "main",
         user: req.user,
         homework: homework
@@ -53,7 +53,17 @@ module.exports = function(app) {
   });
 
   app.get("/gradebook", isAuthenticated, (req, res) => {
-    res.render("gradebook", { layout: "main", user: req.user });
+    db.Document.findAll({
+      where: { documentType: "homework" },
+      include: db.User
+    }).then(homework => {
+      console.log(homework);
+      res.render("gradebook", {
+        layout: "main",
+        user: req.user,
+        homework: homework
+      });
+    });
   });
 
   // Here we've add our isAuthenticated middleware to this route.
