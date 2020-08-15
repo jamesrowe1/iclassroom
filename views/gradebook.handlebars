@@ -1,0 +1,27 @@
+<div class="container">
+    <h2 id="grade-header">TEACHER GRADEBOOK</h2>
+    <table class"striped responsive-table">
+        <thead>
+            <tr>
+                <th>Student first name</th>
+                <th>Student last name</th>
+                <th>Assignment Title</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each User}}
+            {{#each Document}}
+            {{>grades/grade-block}}
+            {{/each}}
+            {{/each}}
+            <tr>
+                <td>Paul</td>
+                <td>Simon</td>
+                <td>Louisiana Purchase</td>
+                <td>95</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -8,14 +8,14 @@ $(document).ready(() => {
   const typeInput = $("#typeInput");
 
   // When the signup button is clicked, we validate the email and password are not blank
-  signUpForm.on("submit", event => {
+  signUpForm.on("submit", (event) => {
     event.preventDefault();
     const userData = {
       firstName: firstNameInput.val().trim(),
       lastName: lastNameInput.val().trim(),
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
-      role: typeInput.val().trim()
+      role: typeInput.val().trim(),
     };
     if (!userData.email || !userData.password) {
       return;
@@ -40,7 +40,7 @@ $(document).ready(() => {
       lastName: lastName,
       email: email,
       password: password,
-      role: role
+      role: role,
     })
       .then(() => {
         window.location.replace("/schedule");

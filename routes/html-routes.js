@@ -4,7 +4,7 @@ const path = require("path");
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.get("/", (req, res) => {
     res.render("index", { layout: "main" });
   });
@@ -40,6 +40,10 @@ module.exports = function(app) {
 
   app.get("/teacher-dashboard", (req, res) => {
     res.render("teacher", { layout: "main" });
+  });
+
+  app.get("/gradebook", (req, res) => {
+    res.render("gradebook", { layout: "main" });
   });
 
   // Here we've add our isAuthenticated middleware to this route.
