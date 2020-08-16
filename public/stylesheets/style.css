@@ -67,3 +67,11 @@ select {
   text-align: center;
   color: teal;
 }
+
+#doc-links {
+  color: aqua;
+}
+
+#doc-type-title {
+  text-transform: capitalize;
+}
