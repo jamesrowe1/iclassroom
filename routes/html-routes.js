@@ -62,18 +62,18 @@ module.exports = function(app) {
   //   res.render("dashboard", { layout: "main", user: req.user });
   // });
 
-  // app.get("/dashboard", isAuthenticated, (req, res) => {
-  //   db.Session.findAll({
-  //     include: { model: db.User, where: { id: req.user.id } }
-  //   }).then(session => {
-  //     console.log(session);
-  //     res.render("dashboard", {
-  //       layout: "main",
-  //       user: req.user,
-  //       session: session
-  //     });
-  //   });
-  // });
+  app.get("/dashboard", isAuthenticated, (req, res) => {
+    db.Session.findAll({
+      where: { studentRequestingId: req.user.id }
+    }).then(session => {
+      console.log(session);
+      res.render("dashboard", {
+        layout: "main",
+        user: req.user,
+        session: session
+      });
+    });
+  });
 
   app.get("/dashboard", isAuthenticated, (req, res) => {
     db.Document.findAll({
@@ -89,18 +89,18 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/dashboard", isAuthenticated, (req, res) => {
-    db.Document.findAll({
-      where: { grade: { [Sequelize.Op.gte]: 89 } }
-    }).then(topDocument => {
-      console.log("TOP DOC ran");
-      res.render("dashboard", {
-        layout: "main",
-        user: req.user,
-        topDocument: topDocument
-      });
-    });
-  });
+  // app.get("/dashboard", isAuthenticated, (req, res) => {
+  //   db.Document.findAll({
+  //     where: { grade: { [Sequelize.Op.gte]: 89 } }
+  //   }).then(topDocument => {
+  //     console.log("TOP DOC ran");
+  //     res.render("dashboard", {
+  //       layout: "main",
+  //       user: req.user,
+  //       topDocument: topDocument
+  //     });
+  //   });
+  // });
 
   app.get("/teacher-dashboard", isAuthenticated, (req, res) => {
     db.Document.findAll({
