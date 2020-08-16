@@ -4,11 +4,18 @@ form.login {
 }
 
 /* css */
+
+html {
+  height: 100%;
+}
+
 body {
-  min-height: 200vh;
+  min-height: 100%;
   /* background-color: #e8f5e9; */
   /* background-color:#f9fbe7; */
   /* background-color:#fff8e1; */
+  display: flex;
+  flex-direction: column;
 }
 
 /* add styling to logo */
@@ -43,6 +50,7 @@ body {
 
 .footer {
   width: 100%;
+  margin-top: auto;
 }
 
 #img {
