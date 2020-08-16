@@ -1,41 +1,50 @@
 <div class="container">
     <h1>DASHBOARD</h1>
+    <div class="card-panel teal">
+        <span class="white-text">
+            <h6 id="qodQuote"></h3>
+            <h6 id="qodAuthor"></h3>
+        </span>
+    </div>
     <div class="row">
         <div class="col s12 m5">
-        <div class="card-panel teal">
-            <a href="/newdoc"><button type="submit" class="btn btn-default white teal-text">Add HW/DOC</button></a>
-            <span class="white-text">            
-                
-                <ul>
-                    <li>hw1 title</li>
-                    <li>doc1 title</li>
-                    <li>hw2 title</li>
-                </ul>
-            </span>
-        </div>
-        </div>
-        <div class="col s12 m5">
-        <div class="card-panel teal">
-            <span class="white-text">            
-                <ul>
-                    <li>grade, title for top Grade</li>
-                    <li>grade, title for top Grade</li>
-                    <li>grade, title for top Grade</li>
-                </ul>
-            </span>
-        </div>
+            <div class="card-panel teal">
+                <h5>YOUR DOCUMENTS:</h5>
+                <span class="white-text">
+
+                    <ul>
+                        {{#each document}}
+                        {{>docs/doc-block}}
+                        {{/each}}
+                    </ul>
+                </span>
+                <a href="/newdoc"><button type="submit" class="btn btn-default white teal-text">Add HW/NOTE</button></a>
+            </div>
         </div>
         <div class="col s12 m5">
-        <div class="card-panel teal">
-            <a href="/schedule"><button type="submit" class="btn btn-default white teal-text">Add Tutor Session</button></a>
-            <span class="white-text">             
-                <ul>
-                    <li>Jimmy and Kayla 12pm</li>
-                    <li>Jimmy and Kayla 12pm</li>
-                    <li>Jimmy and Kayla 12pm</li>
-                </ul>
-            </span>
+            <div class="card-panel teal">
+                <span class="white-text">
+                    <ul>
+                        <li>grade, title for top Grade</li>
+                        <li>grade, title for top Grade</li>
+                        <li>grade, title for top Grade</li>
+                    </ul>
+                </span>
+            </div>
         </div>
+        <div class="col s12 m5">
+            <div class="card-panel teal">
+                <a href="/schedule"><button type="submit" class="btn btn-default white teal-text">Add Tutor
+                        Session</button></a>
+                <span class="white-text">
+                    <ul>
+                        <li>Jimmy and Kayla 12pm</li>
+                        <li>Jimmy and Kayla 12pm</li>
+                        <li>Jimmy and Kayla 12pm</li>
+                    </ul>
+                </span>
+            </div>
         </div>
     </div>
 </div>
+<script src="/js/dashboard.js"></script>

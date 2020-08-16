@@ -74,4 +74,16 @@ select {
 #grade-header {
   text-align: center;
   color: teal;
+<<<<<<< HEAD
 }
+=======
+}
+
+#doc-links {
+  color: aqua;
+}
+
+#doc-type-title {
+  text-transform: capitalize;
+}
+>>>>>>> 94817c0d85cf2270c28ba7468a67342839cc7fdc
