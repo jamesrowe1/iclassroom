@@ -57,8 +57,8 @@ body {
   height: 200px;
 }
 
-.side-nav-color {
-  background-color: #ede7f6;
+.sidenav {
+  background-color: #07fad1;
 }
 
 select {
@@ -74,9 +74,6 @@ select {
 #grade-header {
   text-align: center;
   color: teal;
-<<<<<<< HEAD
-}
-=======
 }
 
 #doc-links {
@@ -86,4 +83,3 @@ select {
 #doc-type-title {
   text-transform: capitalize;
 }
->>>>>>> 94817c0d85cf2270c28ba7468a67342839cc7fdc
