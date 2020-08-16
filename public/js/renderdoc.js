@@ -7,6 +7,6 @@ $("#submit-grade").on("click", () => {
     type: "PUT",
     data: { grade: userGrade, id: homeworkId }
   }).then(() => {
-    window.location.replace("/gradebook");
+    window.location = "/gradebook";
   });
 });

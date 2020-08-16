@@ -63,7 +63,9 @@ module.exports = function(app) {
         grade: req.body.grade
       },
       { where: { id: req.body.id } }
-    );
+    ).then(() => {
+      res.end();
+    });
   });
 
   app.post("/api/schedule", isAuthenticated, (req, res) => {

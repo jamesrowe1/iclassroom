@@ -53,9 +53,10 @@ module.exports = function(app) {
   });
 
   app.get("/gradebook", isAuthenticated, (req, res) => {
+    console.log(req.user);
     db.Document.findAll({
       where: { documentType: "homework" },
-      include: db.User
+      include: { model: db.User, where: { teacherId: req.user.id } }
     }).then(homework => {
       console.log(homework);
       res.render("gradebook", {
