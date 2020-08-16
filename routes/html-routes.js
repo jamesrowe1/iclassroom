@@ -5,7 +5,7 @@ const path = require("path");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 const db = require("../models");
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.get("/", (req, res) => {
     res.render("index", { layout: "main" });
   });
@@ -26,12 +26,12 @@ module.exports = function(app) {
   app.get("/docrender/:id", isAuthenticated, (req, res) => {
     db.Document.findOne({
       where: { id: req.params.id },
-      include: db.User
-    }).then(homework => {
+      include: db.User,
+    }).then((homework) => {
       res.render("doc-render", {
         layout: "main",
         user: req.user,
-        homework: homework
+        homework: homework,
       });
     });
   });
@@ -39,12 +39,12 @@ module.exports = function(app) {
   app.get("/docstudent/:id", isAuthenticated, (req, res) => {
     db.Document.findOne({
       where: { id: req.params.id },
-      include: db.User
-    }).then(document => {
+      include: db.User,
+    }).then((document) => {
       res.render("doc-student", {
         layout: "main",
         user: req.user,
-        document: document
+        document: document,
       });
     });
   });
@@ -64,32 +64,43 @@ module.exports = function(app) {
   app.get("/dashboard", isAuthenticated, (req, res) => {
     db.Document.findAll({
       // where: { documentType: "homework" } || { documentType: "note" },
-      include: { model: db.User, where: { id: req.user.id } }
-    }).then(document => {
+      include: { model: db.User, where: { id: req.user.id } },
+    }).then((document) => {
       console.log(document);
       res.render("dashboard", {
         layout: "main",
         user: req.user,
-        document: document
+        document: document,
       });
     });
   });
 
   app.get("/teacher-dashboard", isAuthenticated, (req, res) => {
-    res.render("teacher", { layout: "main", user: req.user });
+    db.Document.findAll({
+      where: { documentType: "homework" },
+      include: { model: db.User },
+      // where: { id: req.user.id } },
+    }).then((homework) => {
+      console.log(homework);
+      res.render("teacher", {
+        layout: "main",
+        user: req.user,
+        homework: homework,
+      });
+    });
   });
 
   app.get("/gradebook", isAuthenticated, (req, res) => {
     console.log(req.user);
     db.Document.findAll({
       where: { documentType: "homework" },
-      include: { model: db.User, where: { teacherId: req.user.id } }
-    }).then(homework => {
+      include: { model: db.User, where: { teacherId: req.user.id } },
+    }).then((homework) => {
       console.log(homework);
       res.render("gradebook", {
         layout: "main",
         user: req.user,
-        homework: homework
+        homework: homework,
       });
     });
   });
