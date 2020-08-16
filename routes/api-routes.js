@@ -56,6 +56,18 @@ module.exports = function(app) {
     });
   });
 
+  app.put("/api/renderdoc/", isAuthenticated, (req, res) => {
+    console.log(req.body);
+    db.Document.update(
+      {
+        grade: req.body.grade
+      },
+      { where: { id: req.body.id } }
+    ).then(() => {
+      res.end();
+    });
+  });
+
   app.post("/api/schedule", isAuthenticated, (req, res) => {
     db.Session.create({
       studentRequestingId: req.body.studentRequesting,
