@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h2 id="doc-type-title">{{document.dataValues.documentType}}</h2>
+            <label style="display: none" for="nameOfStudent" id="studentSubmitting">{{ user.id }}</label>
+            <label style="display: none" for="idOfHomework" id="idOfHomework">{{ document.dataValues.id }}</label>
+            <h4>Title: {{document.dataValues.title}}</h2>
+                <h5>Body: {{document.dataValues.body}}</h3>
+                    <h5>Author: {{document.dataValues.User.dataValues.firstName}}
+                        {{document.dataValues.User.dataValues.lastName}}</h3>
+
+
+        </div>
+    </div>
