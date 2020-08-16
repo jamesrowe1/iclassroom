@@ -1,30 +1,20 @@
 <div class="container">
     <h1>TEACHER DASHBOARD</h1>
     <div class="row">
-        <div class="col s12 m5">
+        <div class="col s12 m12">
             <div class="card-panel teal">
-                <button type="submit" class="btn btn-default white teal-text">Add HW/DOC</button>
+                <h4>All Homework Assignments:</h4>
                 <span class="white-text">
 
                     <ul>
-                        <li>hw1 title</li>
-                        <li>doc1 title</li>
-                        <li>hw2 title</li>
+                        {{#each homework}}
+                        {{>docs/teacher-block}}
+                        {{/each}}
                     </ul>
                 </span>
             </div>
         </div>
-        <div class="col s12 m5">
-            <div class="card-panel teal">
-                <span class="white-text">
-                    <ul>
-                        <li>grade, title for top Grade</li>
-                        <li>grade, title for top Grade</li>
-                        <li>grade, title for top Grade</li>
-                    </ul>
-                </span>
-            </div>
-        </div>
+
     </div>
     <div class="row">
         <div class="col s12 m5">
