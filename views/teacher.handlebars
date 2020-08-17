@@ -1,10 +1,5 @@
 <div class="container">
-
-    <div class="card-panel teal">
-        <span class="white-text">
-            <h2>{{user.firstName}} {{user.lastName}}'s DASHBOARD</h2>
-        </span>
-    </div>
+    <h1>TEACHER DASHBOARD</h1>
     <div class="row">
         <div class="col s12 m5">
             <div class="card-panel teal">
@@ -22,19 +17,6 @@
         <div class="col s12 m5">
             <div class="card-panel teal">
                 <span class="white-text">
-                    <h5>TOP-GRADED DOCUMENTS:</h5>
-                    <ul>
-                        {{#each topDocument}}
-                        {{>docs/doc-block}}
-                        {{/each}}
-                    </ul>
-                </span>
-            </div>
-        </div>
-        <div class="col s12 m5">
-            <div class="card-panel teal">
-
-                <span class="white-text">
                     <h5>YOUR TUTOR SESSIONS:</h5>
                     <ul>
                         {{#each session}}
@@ -42,10 +24,15 @@
                         {{/each}}
                     </ul>
                 </span>
-                <a href="/schedule"><button type="submit" class="btn btn-default white teal-text">Add Tutor
-                        Session</button></a>
+                <a href="/schedule"><button type="submit" class="btn btn-default white teal-text">Add Tutor Session</button></a>
+            </div>
+        </div>
+        <div class="col s12 m5">
+            <div class="card-panel teal grades">
+                <button type="submit" class="btn btn-default white teal-text" id="gradebook-btn">Teacher Gradebook</button>
             </div>
         </div>
     </div>
+
 </div>
-<script src="/js/dashboard.js"></script>
+<script src="/js/teacher.js"></script>
