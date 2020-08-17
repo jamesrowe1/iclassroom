@@ -7,6 +7,7 @@ const db = require("../models");
 const { Sequelize } = require("sequelize");
 
 module.exports = function(app) {
+  // These pages are rendered with the appropriate handlebars.
   app.get("/", (req, res) => {
     res.render("index", { layout: "main" });
   });
@@ -23,7 +24,11 @@ module.exports = function(app) {
     res.render("schedule", { layout: "main", user: req.user });
   });
 
-  // render a document
+  app.get("/newdoc", isAuthenticated, (req, res) => {
+    res.render("newdoc", { layout: "main", user: req.user });
+  });
+
+  // This request finds a document in the database by its ID and renders it on the page, with the option of "adding a grade" for teachers.
   app.get("/docrender/:id", isAuthenticated, (req, res) => {
     db.Document.findOne({
       where: { id: req.params.id },
@@ -37,6 +42,7 @@ module.exports = function(app) {
     });
   });
 
+  // This request finds a document in the database by its ID and renders it on the page. It is the version students can view.
   app.get("/docstudent/:id", isAuthenticated, (req, res) => {
     db.Document.findOne({
       where: { id: req.params.id },
@@ -50,18 +56,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/newdoc", isAuthenticated, (req, res) => {
-    res.render("newdoc", { layout: "main", user: req.user });
-  });
-
-  app.get("/schedule", isAuthenticated, (req, res) => {
-    res.render("schedule", { layout: "main", user: req.user });
-  });
-
-  // app.get("/dashboard", isAuthenticated, (req, res) => {
-  //   res.render("dashboard", { layout: "main", user: req.user });
-  // });
-
+  // This request finds all a user's sessions in the database.
   app.get("/dashboard", isAuthenticated, (req, res) => {
     db.Session.findAll({
       where: { studentRequestingId: req.user.id }
@@ -75,9 +70,9 @@ module.exports = function(app) {
     });
   });
 
+  // This request finds all a user's documents in the database.
   app.get("/dashboard", isAuthenticated, (req, res) => {
     db.Document.findAll({
-      // where: { documentType: "homework" } || { documentType: "note" },
       include: { model: db.User, where: { id: req.user.id } }
     }).then(document => {
       console.log(document);
@@ -89,24 +84,25 @@ module.exports = function(app) {
     });
   });
 
-  // app.get("/dashboard", isAuthenticated, (req, res) => {
-  //   db.Document.findAll({
-  //     where: { grade: { [Sequelize.Op.gte]: 89 } }
-  //   }).then(topDocument => {
-  //     console.log("TOP DOC ran");
-  //     res.render("dashboard", {
-  //       layout: "main",
-  //       user: req.user,
-  //       topDocument: topDocument
-  //     });
-  //   });
-  // });
+  // This request finds all the top documents in the database.
+  app.get("/dashboard", isAuthenticated, (req, res) => {
+    db.Document.findAll({
+      where: { grade: { [Sequelize.Op.gte]: 89 } }
+    }).then(topDocument => {
+      console.log("TOP DOC ran");
+      res.render("dashboard", {
+        layout: "main",
+        user: req.user,
+        topDocument: topDocument
+      });
+    });
+  });
 
+  // This request finds all the homework documents in the database and displays them for the teacher.
   app.get("/teacher-dashboard", isAuthenticated, (req, res) => {
     db.Document.findAll({
       where: { documentType: "homework" },
       include: { model: db.User }
-      // where: { id: req.user.id } },
     }).then(homework => {
       console.log(homework);
       res.render("teacher", {
@@ -117,6 +113,7 @@ module.exports = function(app) {
     });
   });
 
+  // This request finds all the documents and grade and displays them for the teacher.
   app.get("/gradebook", isAuthenticated, (req, res) => {
     console.log(req.user);
     db.Document.findAll({
