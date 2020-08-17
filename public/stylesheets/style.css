@@ -88,6 +88,6 @@ select {
   text-transform: capitalize;
 }
 
-.nav-color{
-  background-color: grey;
+nav{
+  background-color: blue;
 }
