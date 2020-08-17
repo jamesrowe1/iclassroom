@@ -30,7 +30,7 @@ Express.js, Passport.js, Bcrypt.js, Sequelize.js
 
 # Link to deployed Heroku:
 
-![Teacher Reacher](https://github.com/jamesrowe1/project2/projects/)
+![Teacher Reacher](https://classroomhelper.herokuapp.com/)
 
 # GitHub:
 

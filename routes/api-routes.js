@@ -13,7 +13,7 @@ module.exports = function(app) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
-      id: req.user.id
+      id: req.user.id,
     });
   });
 
@@ -33,14 +33,12 @@ module.exports = function(app) {
       email: req.body.email,
       password: req.body.password,
       role: req.body.role,
-      teacherId: teacherId
+      teacherId: teacherId,
     })
       .then(() => {
         res.redirect(307, "/api/login");
       })
-      .catch(err => {
-        //console.log(err);
-        console.log(req.body.teacherId);
+      .catch((err) => {
         res.status(401).json(err);
       });
   });
@@ -50,8 +48,8 @@ module.exports = function(app) {
       title: req.body.title,
       body: req.body.body,
       documentType: req.body.documentType,
-      UserId: req.user.id
-    }).then(result => {
+      UserId: req.user.id,
+    }).then((result) => {
       res.json(result);
     });
   });
@@ -60,7 +58,7 @@ module.exports = function(app) {
     console.log(req.body);
     db.Document.update(
       {
-        grade: req.body.grade
+        grade: req.body.grade,
       },
       { where: { id: req.body.id } }
     ).then(() => {
@@ -74,8 +72,8 @@ module.exports = function(app) {
       tutorId: req.body.tutor,
       subject: req.body.subject,
       time: req.body.time,
-      date: req.body.date
-    }).then(result => {
+      date: req.body.date,
+    }).then((result) => {
       res.json(result);
     });
   });
@@ -96,13 +94,13 @@ module.exports = function(app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         email: req.user.email,
-        id: req.user.id
+        id: req.user.id,
       });
     }
   });
 
   app.get("/api/users", (req, res) => {
-    db.User.findAll({}).then(dbUsers => {
+    db.User.findAll({}).then((dbUsers) => {
       res.json(dbUsers);
     });
   });
@@ -110,10 +108,10 @@ module.exports = function(app) {
   app.get("/api/users/teachers", (req, res) => {
     db.User.findAll({
       where: {
-        role: "teacher"
+        role: "teacher",
       },
-      raw: true
-    }).then(teachers => {
+      raw: true,
+    }).then((teachers) => {
       res.json(teachers);
     });
   });
