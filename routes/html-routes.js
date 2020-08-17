@@ -4,8 +4,9 @@ const path = require("path");
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 const db = require("../models");
+const { Sequelize } = require("sequelize");
 
-module.exports = function (app) {
+module.exports = function(app) {
   app.get("/", (req, res) => {
     res.render("index", { layout: "main" });
   });
@@ -26,12 +27,12 @@ module.exports = function (app) {
   app.get("/docrender/:id", isAuthenticated, (req, res) => {
     db.Document.findOne({
       where: { id: req.params.id },
-      include: db.User,
-    }).then((homework) => {
+      include: db.User
+    }).then(homework => {
       res.render("doc-render", {
         layout: "main",
         user: req.user,
-        homework: homework,
+        homework: homework
       });
     });
   });
@@ -39,12 +40,12 @@ module.exports = function (app) {
   app.get("/docstudent/:id", isAuthenticated, (req, res) => {
     db.Document.findOne({
       where: { id: req.params.id },
-      include: db.User,
-    }).then((document) => {
+      include: db.User
+    }).then(document => {
       res.render("doc-student", {
         layout: "main",
         user: req.user,
-        document: document,
+        document: document
       });
     });
   });
@@ -62,30 +63,56 @@ module.exports = function (app) {
   // });
 
   app.get("/dashboard", isAuthenticated, (req, res) => {
-    db.Document.findAll({
-      // where: { documentType: "homework" } || { documentType: "note" },
-      include: { model: db.User, where: { id: req.user.id } },
-    }).then((document) => {
-      console.log(document);
+    db.Session.findAll({
+      where: { studentRequestingId: req.user.id }
+    }).then(session => {
+      console.log(session);
       res.render("dashboard", {
         layout: "main",
         user: req.user,
-        document: document,
+        session: session
       });
     });
   });
 
+  app.get("/dashboard", isAuthenticated, (req, res) => {
+    db.Document.findAll({
+      // where: { documentType: "homework" } || { documentType: "note" },
+      include: { model: db.User, where: { id: req.user.id } }
+    }).then(document => {
+      console.log(document);
+      res.render("dashboard", {
+        layout: "main",
+        user: req.user,
+        document: document
+      });
+    });
+  });
+
+  // app.get("/dashboard", isAuthenticated, (req, res) => {
+  //   db.Document.findAll({
+  //     where: { grade: { [Sequelize.Op.gte]: 89 } }
+  //   }).then(topDocument => {
+  //     console.log("TOP DOC ran");
+  //     res.render("dashboard", {
+  //       layout: "main",
+  //       user: req.user,
+  //       topDocument: topDocument
+  //     });
+  //   });
+  // });
+
   app.get("/teacher-dashboard", isAuthenticated, (req, res) => {
     db.Document.findAll({
       where: { documentType: "homework" },
-      include: { model: db.User },
+      include: { model: db.User }
       // where: { id: req.user.id } },
-    }).then((homework) => {
+    }).then(homework => {
       console.log(homework);
       res.render("teacher", {
         layout: "main",
         user: req.user,
-        homework: homework,
+        homework: homework
       });
     });
   });
@@ -94,13 +121,13 @@ module.exports = function (app) {
     console.log(req.user);
     db.Document.findAll({
       where: { documentType: "homework" },
-      include: { model: db.User, where: { teacherId: req.user.id } },
-    }).then((homework) => {
+      include: { model: db.User, where: { teacherId: req.user.id } }
+    }).then(homework => {
       console.log(homework);
       res.render("gradebook", {
         layout: "main",
         user: req.user,
-        homework: homework,
+        homework: homework
       });
     });
   });
