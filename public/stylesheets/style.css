@@ -87,3 +87,7 @@ select {
 #doc-type-title {
   text-transform: capitalize;
 }
+
+.nav-color{
+  background-color: grey;
+}
