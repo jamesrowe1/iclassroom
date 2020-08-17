@@ -56,7 +56,7 @@ module.exports = function(app) {
     });
   });
 
-  // This request finds all a user's sessions in the database.
+  // This request pulls documents and sessions from the database and renders them on the dashboard.
   app.get("/dashboard", isAuthenticated, (req, res) => {
     db.Session.findAll({
       where: {
