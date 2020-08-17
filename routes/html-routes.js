@@ -61,42 +61,66 @@ module.exports = function(app) {
     db.Session.findAll({
       where: { studentRequestingId: req.user.id }
     }).then(session => {
-      console.log(session);
-      res.render("dashboard", {
-        layout: "main",
-        user: req.user,
-        session: session
+      db.Document.findAll({
+        include: { model: db.User, where: { id: req.user.id } }
+      }).then(document => {
+        db.Document.findAll({
+          where: { grade: { [Sequelize.Op.gte]: 89 } }
+        }).then(topDocument => {
+          console.log("TOP DOC ran");
+          res.render("dashboard", {
+            layout: "main",
+            user: req.user,
+            session: session,
+            topDocument: topDocument,
+            document: document
+          });
+        });
       });
     });
   });
 
-  // This request finds all a user's documents in the database.
-  app.get("/dashboard", isAuthenticated, (req, res) => {
-    db.Document.findAll({
-      include: { model: db.User, where: { id: req.user.id } }
-    }).then(document => {
-      console.log(document);
-      res.render("dashboard", {
-        layout: "main",
-        user: req.user,
-        document: document
-      });
-    });
-  });
+  // This request finds all a user's sessions in the database.
+  // app.get("/dashboard", isAuthenticated, (req, res) => {
+  //   db.Session.findAll({
+  //     where: { studentRequestingId: req.user.id }
+  //   }).then(session => {
+  //     console.log(session);
+  //     res.render("dashboard", {
+  //       layout: "main",
+  //       user: req.user,
+  //       session: session
+  //     });
+  //   });
+  // });
 
-  // This request finds all the top documents in the database.
-  app.get("/dashboard", isAuthenticated, (req, res) => {
-    db.Document.findAll({
-      where: { grade: { [Sequelize.Op.gte]: 89 } }
-    }).then(topDocument => {
-      console.log("TOP DOC ran");
-      res.render("dashboard", {
-        layout: "main",
-        user: req.user,
-        topDocument: topDocument
-      });
-    });
-  });
+  // // This request finds all a user's documents in the database.
+  // app.get("/dashboard", isAuthenticated, (req, res) => {
+  //   db.Document.findAll({
+  //     include: { model: db.User, where: { id: req.user.id } }
+  //   }).then(document => {
+  //     console.log(document);
+  //     res.render("dashboard", {
+  //       layout: "main",
+  //       user: req.user,
+  //       document: document
+  //     });
+  //   });
+  // });
+
+  // // This request finds all the top documents in the database.
+  // app.get("/dashboard", isAuthenticated, (req, res) => {
+  //   db.Document.findAll({
+  //     where: { grade: { [Sequelize.Op.gte]: 89 } }
+  //   }).then(topDocument => {
+  //     console.log("TOP DOC ran");
+  //     res.render("dashboard", {
+  //       layout: "main",
+  //       user: req.user,
+  //       topDocument: topDocument
+  //     });
+  //   });
+  // });
 
   // This request finds all the homework documents in the database and displays them for the teacher.
   app.get("/teacher-dashboard", isAuthenticated, (req, res) => {
