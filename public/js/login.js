@@ -31,8 +31,12 @@ $(document).ready(() => {
         window.location.replace("/dashboard");
         // If there's an error, log the error
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(handleLogInErr);
+  }
+  function handleLogInErr(err) {
+    console.log(err);
+    console.log(err.responseText);
+    $("#alert .msg").text("Invalid Username or Password");
+    $("#alert").fadeIn(500);
   }
 });
