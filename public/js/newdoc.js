@@ -8,13 +8,11 @@ $(document).ready(() => {
   // When the signup button is clicked, we validate the email and password are not blank
   newDocForm.on("submit", event => {
     event.preventDefault();
-    console.log("yo");
     const docData = {
       title: titleInput.val().trim(),
       body: bodyInput.val().trim(),
       documentType: typeChoice.val().trim()
     };
-    console.log(docData);
     if (!docData.title || !docData.body || !docData.documentType) {
       return;
     }
