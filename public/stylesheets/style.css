@@ -89,5 +89,12 @@ select {
 }
 
 nav {
-  background-color:red;
+  background-color:#273043;
+}
+.page-footer{
+  background-color: #9197ae;
+}
+
+.footer-copyright{
+  background-color: #273043;
 }
