@@ -6,7 +6,7 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 const db = require("../models");
 const { Sequelize } = require("sequelize");
 
-module.exports = function (app) {
+module.exports = function(app) {
   // These pages are rendered with the appropriate handlebars.
   app.get("/", (req, res) => {
     res.render("index", { layout: "main" });
@@ -56,7 +56,7 @@ module.exports = function (app) {
     });
   });
 
-  // This request finds all a user's sessions in the database.
+  // This request pulls documents and sessions from the database and renders them on the dashboard.
   app.get("/dashboard", isAuthenticated, (req, res) => {
     db.Session.findAll({
       where: { studentRequestingId: req.user.id },
