@@ -61,10 +61,12 @@ module.exports = function(app) {
     db.Session.findAll({
       where: {
         [Sequelize.Op.or]: [
-          ({ studentRequestingId: req.user.id }, { tutorId: req.user.id })
+          { studentRequestingId: req.user.id },
+          { tutorId: req.user.id }
         ]
       }
     }).then(session => {
+      console.log(session);
       db.Document.findAll({
         include: { model: db.User, where: { id: req.user.id } }
       }).then(document => {
