@@ -1,4 +1,4 @@
-# Teacher Reacher
+# iClassroom
 
 As schools begin to reopen during an uncertain pandemic, the look of classrooms and how they operate are constantly having to adjust to a new normal. This requires new ideas, technologies and methods of learning - which can be difficult! It also allows the opportunity to level the playing field for many students by opening their resources to learn and quality of education to more than their specific school system or geographic location. This program will help connect students within a classroom (and beyond!) to other students who can share their notes, work together on assignments, and teach each other. This is part note taker, part tutor, part social media site. “By teaching, we learn."
 
@@ -30,7 +30,7 @@ Express.js, Passport.js, Bcrypt.js, Sequelize.js
 
 # Link to deployed Heroku:
 
-![Teacher Reacher](https://classroomhelper.herokuapp.com/)
+![iClassroom](https://classroomhelper.herokuapp.com/)
 
 # GitHub:
 
