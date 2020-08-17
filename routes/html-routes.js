@@ -58,9 +58,12 @@ module.exports = function(app) {
 
   // This request finds all a user's sessions in the database.
   app.get("/dashboard", isAuthenticated, (req, res) => {
-    console.log(req.user);
     db.Session.findAll({
-      where: { studentRequestingId: req.user.id }
+      where: {
+        [Sequelize.Op.or]: [
+          ({ studentRequestingId: req.user.id }, { tutorId: req.user.id })
+        ]
+      }
     }).then(session => {
       db.Document.findAll({
         include: { model: db.User, where: { id: req.user.id } }
@@ -69,7 +72,6 @@ module.exports = function(app) {
           where: { grade: { [Sequelize.Op.gte]: 89 } }
         }).then(topDocument => {
           console.log("TOP DOC ran");
-          console.log(req.user.firstName);
           res.render("dashboard", {
             layout: "main",
             user: req.user,

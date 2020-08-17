@@ -57,7 +57,7 @@ function addSession(studentRequesting, tutor, workOn, datePicked, timePicked) {
     date: datePicked
   })
     .then(() => {
-      window.location.replace("/");
+      window.location.replace("/dashboard");
     })
     .catch(handleScheduleErr);
 }
