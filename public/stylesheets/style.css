@@ -58,7 +58,11 @@ body {
 }
 
 .sidenav {
-  background-color: #07fad1;
+  background-color: #cfbfc0;
+  margin-top: 60px;
+  width: 70%;
+  height: 50%;
+  border-block: 5px;
 }
 
 select {
