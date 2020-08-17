@@ -18,8 +18,17 @@ If you log in as a teacher, your dashboard will also render documents and tutor 
 
 # Links:
 
-![iClassroom Heroku](https://classroomhelper.herokuapp.com/)
-![Github Repo](https://github.com/jamesrowe1/project2/projects/)
+[iClassroom Heroku](https://classroomhelper.herokuapp.com/)
+
+[Github Repo](https://github.com/jamesrowe1/project2/projects/)
+
+## Screenshots
+
+![Student Dashboard](./assets/screenshot1.png)
+![Teacher Dashboard](./assets/screenshot2.png)
+![Submit a Document](./assets/screenshot3.png)
+![Schedule a Session](./assets/screenshot4.png)
+![Teacher Gradebook](./assets/screenshot5.png)
 
 ## Team Members
 
