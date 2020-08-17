@@ -2,7 +2,7 @@ const qodQuote = $("#qodQuote");
 const qodAuthor = $("#qodAuthor");
 async function getQuote() {
   $.ajax({
-    url: "http://quotes.rest/qod.json?category=inspire",
+    url: "https://quotes.rest/qod.json?category=inspire",
     method: "GET"
   }).then(data => {
     console.log(data);
